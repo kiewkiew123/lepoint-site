@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="LePoint Site showcases social media account profiles and provides account-related consultation and management services.">
+  <title>Social Media Account Showcase | LePoint Site</title>
+  <style>
+  :root { color-scheme: light; --ink:#162d42; --muted:#617388; --line:#e4e9ed; --teal:#23b2aa; --cream:#f7f8f5; }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; color:var(--ink); background:#f3f5f4; font-family:Inter,Arial,"Microsoft YaHei","PingFang SC",sans-serif; line-height:1.6; }
+  button { font:inherit; }
+  .page { max-width:1280px; margin:auto; min-height:100vh; background:#fff; box-shadow:0 12px 50px #18364a12; }
+  header { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:21px clamp(24px,5vw,72px); background:#fff; }
+  .brand { display:flex; align-items:center; gap:11px; color:#16384d; font-weight:800; font-size:20px; text-decoration:none; letter-spacing:-.03em; }
+  .brand:before { content:"H"; display:grid; place-items:center; width:34px; height:34px; border-radius:10px; background:#1caea7; color:#fff; font-size:21px; font-weight:800; font-style:italic; }
+  nav { display:flex; gap:32px; }
+  nav a { color:#516577; text-decoration:none; font-size:14px; font-weight:600; }
+  nav a:hover, nav a:focus-visible { color:#0c8f8a; }
+  .hero { position:relative; overflow:hidden; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr); gap:24px; align-items:center; padding:70px clamp(24px,5vw,72px) 76px; background:radial-gradient(circle at 78% 28%,#1f6471 0,#173f52 31%,#102c43 76%); color:#fff; }
+  .hero:before, .hero:after { position:absolute; content:""; border:1px solid #ffffff1c; border-radius:50%; width:620px; height:620px; right:-130px; top:-265px; pointer-events:none; }
+  .hero:after { width:390px; height:390px; right:-15px; top:-150px; }
+  .hero-copy { position:relative; z-index:1; max-width:650px; }
+  .eyebrow { display:inline-block; margin:0 0 22px; padding:7px 12px; border:1px solid #6fc9c75d; border-radius:100px; color:#9ce5de; font-size:11px; font-weight:800; letter-spacing:.14em; }
+  h1 { max-width:680px; margin:0 0 22px; font-size:clamp(38px,5.4vw,68px); line-height:1.16; letter-spacing:-.055em; }
+  .hero-copy > p:last-of-type { max-width:575px; margin:0; color:#d5e6eb; font-size:17px; line-height:1.85; }
+  .hero-link { display:inline-block; margin-top:30px; padding:12px 20px; border-radius:7px; background:#27c4b8; color:#10343c; text-decoration:none; font-weight:800; font-size:14px; box-shadow:0 8px 24px #04262d45; }
+  .hero-link:hover { background:#66dbcf; }
+  .hero-art { position:relative; z-index:1; min-height:365px; display:grid; place-items:center; }
+  .art-panel { position:relative; width:min(100%,380px); min-height:300px; padding:24px; border:1px solid #ffffff40; border-radius:22px; background:linear-gradient(140deg,#ffffffed,#e9f6f4f2); color:#183549; box-shadow:0 25px 60px #071b2c70; transform:rotate(3deg); }
+  .art-top { display:flex; align-items:center; justify-content:space-between; }
+  .art-dots { display:flex; gap:6px; }
+  .art-dots i { width:7px; height:7px; background:#bed3d4; border-radius:50%; }
+  .art-label { color:#81949d; font-size:11px; font-weight:800; letter-spacing:.08em; }
+  .art-title { margin:27px 0 20px; font-size:16px; font-weight:800; }
+  .art-bars { display:flex; align-items:flex-end; gap:10px; height:92px; padding:0 6px 17px; border-bottom:1px solid #d8e6e5; }
+  .art-bars i { flex:1; border-radius:7px 7px 2px 2px; background:linear-gradient(0deg,#1d9d9b,#70d9c9); }
+  .art-bars i:nth-child(1){height:35%}.art-bars i:nth-child(2){height:55%}.art-bars i:nth-child(3){height:48%}.art-bars i:nth-child(4){height:75%}.art-bars i:nth-child(5){height:62%}.art-bars i:nth-child(6){height:90%}
+  .art-footer { display:flex; gap:10px; margin-top:22px; }
+  .art-pill { flex:1; height:40px; border-radius:8px; background:#dbeeea; }
+  .art-pill:last-child { flex:.6; background:#c5e5df; }
+  .floating-badge { position:absolute; right:-5px; bottom:13px; padding:13px 17px; border:1px solid #dcece9; border-radius:12px; background:#fff; box-shadow:0 12px 30px #061d2f50; color:#184d5a; font-weight:800; font-size:13px; transform:rotate(-5deg); }
+  .floating-badge:before { content:"●"; margin-right:8px; color:#21b6a8; }
+  main { padding:60px clamp(24px,5vw,72px) 80px; }
+  .section-kicker { margin:0 0 6px; color:#139c96; font-size:12px; font-weight:800; letter-spacing:.13em; }
+  .section-head { display:flex; align-items:end; justify-content:space-between; gap:20px; margin-bottom:22px; }
+  h2 { margin:0; color:#173b51; font-size:clamp(26px,3vw,34px); letter-spacing:-.04em; line-height:1.25; }
+  .filters { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 24px; padding-bottom:22px; border-bottom:1px solid var(--line); }
+  .filter { border:1px solid #d9e3e6; background:#fff; color:#587080; border-radius:100px; padding:9px 17px; cursor:pointer; font-size:13px; font-weight:700; transition:background .15s,transform .15s; }
+  .filter:hover { transform:translateY(-2px); border-color:#8ecdc8; }
+  .filter[aria-pressed="true"] { background:#164355; border-color:#164355; color:#fff; }
+  .list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+  .card { position:relative; overflow:hidden; padding:0 22px 22px; border:1px solid #e3eaec; border-radius:13px; background:#fff; box-shadow:0 7px 24px #1740550b; transition:transform .18s,box-shadow .18s; }
+  .card:hover { transform:translateY(-4px); box-shadow:0 15px 30px #17405519; }
+  .card[hidden] { display:none; }
+  .card:before { content:""; display:block; height:78px; margin:0 -22px 18px; background:linear-gradient(125deg,#ceeae5,#e8f3f0 62%,#f3f8ee); }
+  .card:nth-child(2):before { background:linear-gradient(125deg,#f7e1d2,#fdf1e6 62%,#fff8ed); }
+  .card:nth-child(3):before { background:linear-gradient(125deg,#d9e4f6,#eef2fb 62%,#f6f8fc); }
+  .card:nth-child(4):before { background:linear-gradient(125deg,#e2def6,#f2effb 62%,#faf8fc); }
+  .card:nth-child(5):before { background:linear-gradient(125deg,#f5e1e7,#fcf0f3 62%,#fdf9fa); }
+  .card:nth-child(6):before { background:linear-gradient(125deg,#d9ecef,#eef7f8 62%,#f9fbfb); }
+  .card-top { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:-52px; position:relative; min-height:30px; }
+  .platform { padding:5px 10px; border-radius:6px; background:#fff; color:#244c60; box-shadow:0 2px 8px #153d5417; font-size:12px; font-weight:800; }
+  .card h3 { margin:25px 0 1px; font-size:19px; letter-spacing:-.03em; }
+  .code { margin:0 0 19px; color:#8c9ba5; font-size:12px; }
+  dl { display:grid; grid-template-columns:1fr 1fr; gap:13px 8px; margin:0; }
+  dl > div:last-child { grid-column:1 / -1; }
+  dt { color:#82919d; font-size:11px; }
+  dd { margin:2px 0 0; font-size:14px; font-weight:800; color:#2d485a; }
+  .price { display:flex; justify-content:space-between; align-items:baseline; gap:8px; margin:20px 0 0; padding-top:16px; border-top:1px solid #e8edef; color:#78909b; font-size:11px; }
+  .price strong { color:#164d5c; font-size:22px; letter-spacing:-.04em; }
+  .about { display:grid; grid-template-columns:180px 1fr; gap:30px; align-items:start; margin-top:70px; padding:34px; border-radius:16px; background:#eef7f4; }
+  .about h2 { font-size:25px; }
+  .about p { max-width:710px; margin:0; color:#4c6671; font-size:15px; line-height:1.85; }
+  footer { display:flex; justify-content:space-between; gap:16px; padding:24px clamp(24px,5vw,72px); border-top:1px solid var(--line); color:#80919c; font-size:12px; }
+  @media(max-width:950px) { .hero { grid-template-columns:1fr .75fr; } .hero-art { min-height:280px; } .art-panel { transform:none; } .list { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  @media(max-width:680px) { header { padding:17px 22px; } .brand { font-size:17px; } nav { gap:15px; } nav a { font-size:12px; } .hero { grid-template-columns:1fr; padding:48px 24px 52px; } .hero-art { display:none; } main { padding:45px 22px 60px; } .section-head { display:block; } .list { grid-template-columns:1fr; } .about { display:block; padding:25px; margin-top:50px; } .about p { margin-top:13px; } footer { flex-direction:column; padding:22px; } }
+  @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .card,.filter { transition:none; } }
+</style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <a class="brand" href="#top">LePoint Site</a>
+      <nav aria-label="Page navigation"><a href="#accounts">Accounts</a><a href="#about">About Us</a></nav>
+    </header>
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">SOCIAL MEDIA ACCOUNT SERVICES</p>
+        <h1>Explore More Possibilities<br>in Social Media</h1>
+        <p>LePoint Site showcases social media account profiles and offers account-related consultation and management services. We help clients review account niches, audiences, and key metrics before exploring the options that fit their needs.</p>
+        <a class="hero-link" href="#accounts">Browse Accounts ↗</a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-panel">
+          <div class="art-top"><span class="art-dots"><i></i><i></i><i></i></span><span class="art-label">ACCOUNT OVERVIEW</span></div>
+          <div class="art-title">Social Account Overview</div>
+          <div class="art-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="art-footer"><span class="art-pill"></span><span class="art-pill"></span></div>
+        </div>
+        <div class="floating-badge">Niches · Metrics · Audiences</div>
+      </div>
+    </section>
+    <main>
+      <section id="accounts" aria-labelledby="accounts-title">
+        <p class="section-kicker">ACCOUNT SHOWCASE</p><div class="section-head">
+          <h2 id="accounts-title">Account Showcase</h2>
+          
+        </div>
+        <div class="filters" role="group" aria-label="Filter by platform">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter" type="button" data-filter="instagram" aria-pressed="false">Instagram</button>
+          <button class="filter" type="button" data-filter="tiktok" aria-pressed="false">TikTok</button>
+          <button class="filter" type="button" data-filter="youtube" aria-pressed="false">YouTube</button>
+        </div>
+        <div class="list">
+          <article class="card" data-platform="instagram"><div class="card-top"><span class="platform">Instagram</span></div><h3>Travel &amp; Lifestyle</h3><p class="code">Username: @velxxx</p><dl><div><dt>Followers</dt><dd>12.8K</dd></div><div><dt>Main audience</dt><dd>Southeast Asia</dd></div><div><dt>Content focus</dt><dd>Travel stories</dd></div></dl><p class="price">Asking price <strong>USD 390</strong></p></article>
+          <article class="card" data-platform="instagram"><div class="card-top"><span class="platform">Instagram</span></div><h3>Food &amp; Dining</h3><p class="code">Username: @mori4xxx</p><dl><div><dt>Followers</dt><dd>8.6K</dd></div><div><dt>Main audience</dt><dd>Malaysia</dd></div><div><dt>Content focus</dt><dd>Food reviews</dd></div></dl><p class="price">Asking price <strong>USD 340</strong></p></article>
+          <article class="card" data-platform="instagram"><div class="card-top"><span class="platform">Instagram</span></div><h3>Fitness &amp; Wellness</h3><p class="code">Username: @k3lxxx</p><dl><div><dt>Followers</dt><dd>24.5K</dd></div><div><dt>Main audience</dt><dd>Global</dd></div><div><dt>Content focus</dt><dd>Workout tips</dd></div></dl><p class="price">Asking price <strong>USD 590</strong></p></article>
+          <article class="card" data-platform="instagram"><div class="card-top"><span class="platform">Instagram</span></div><h3>Fashion &amp; Style</h3><p class="code">Username: @nuvaxxx</p><dl><div><dt>Followers</dt><dd>31.4K</dd></div><div><dt>Main audience</dt><dd>Southeast Asia</dd></div><div><dt>Content focus</dt><dd>Outfit inspiration</dd></div></dl><p class="price">Asking price <strong>USD 680</strong></p></article>
+          <article class="card" data-platform="instagram"><div class="card-top"><span class="platform">Instagram</span></div><h3>Beauty &amp; Skincare</h3><p class="code">Username: @r8xixxx</p><dl><div><dt>Followers</dt><dd>17.2K</dd></div><div><dt>Main audience</dt><dd>Malaysia</dd></div><div><dt>Content focus</dt><dd>Beauty content</dd></div></dl><p class="price">Asking price <strong>USD 510</strong></p></article>
+          <article class="card" data-platform="instagram"><div class="card-top"><span class="platform">Instagram</span></div><h3>Pets &amp; Animals</h3><p class="code">Username: @daro2xxx</p><dl><div><dt>Followers</dt><dd>14.9K</dd></div><div><dt>Main audience</dt><dd>Global</dd></div><div><dt>Content focus</dt><dd>Pet moments</dd></div></dl><p class="price">Asking price <strong>USD 420</strong></p></article>
+          <article class="card" data-platform="instagram"><div class="card-top"><span class="platform">Instagram</span></div><h3>Tech &amp; Gadgets</h3><p class="code">Username: @qemxxx</p><dl><div><dt>Followers</dt><dd>27.1K</dd></div><div><dt>Main audience</dt><dd>Global</dd></div><div><dt>Content focus</dt><dd>Product highlights</dd></div></dl><p class="price">Asking price <strong>USD 640</strong></p></article>
+          <article class="card" data-platform="instagram"><div class="card-top"><span class="platform">Instagram</span></div><h3>Home &amp; Interior</h3><p class="code">Username: @luno7xxx</p><dl><div><dt>Followers</dt><dd>18.3K</dd></div><div><dt>Main audience</dt><dd>Southeast Asia</dd></div><div><dt>Content focus</dt><dd>Interior ideas</dd></div></dl><p class="price">Asking price <strong>USD 480</strong></p></article>
+          <article class="card" data-platform="instagram"><div class="card-top"><span class="platform">Instagram</span></div><h3>Education &amp; Tips</h3><p class="code">Username: @beqxxx</p><dl><div><dt>Followers</dt><dd>20.6K</dd></div><div><dt>Main audience</dt><dd>Global</dd></div><div><dt>Content focus</dt><dd>Practical guides</dd></div></dl><p class="price">Asking price <strong>USD 540</strong></p></article>
+          <article class="card" data-platform="instagram"><div class="card-top"><span class="platform">Instagram</span></div><h3>Cars &amp; Mobility</h3><p class="code">Username: @yara9xxx</p><dl><div><dt>Followers</dt><dd>22.8K</dd></div><div><dt>Main audience</dt><dd>Global</dd></div><div><dt>Content focus</dt><dd>Car features</dd></div></dl><p class="price">Asking price <strong>USD 610</strong></p></article>
+          <article class="card" data-platform="tiktok"><div class="card-top"><span class="platform">TikTok</span></div><h3>Home &amp; Living</h3><p class="code">Username: @sivxxx</p><dl><div><dt>Followers</dt><dd>31.2K</dd></div><div><dt>Main audience</dt><dd>Southeast Asia</dd></div><div><dt>Content focus</dt><dd>Home videos</dd></div></dl><p class="price">Asking price <strong>USD 650</strong></p></article>
+          <article class="card" data-platform="tiktok"><div class="card-top"><span class="platform">TikTok</span></div><h3>Pets &amp; Daily Life</h3><p class="code">Username: @pelo3xxx</p><dl><div><dt>Followers</dt><dd>15.4K</dd></div><div><dt>Main audience</dt><dd>Global</dd></div><div><dt>Content focus</dt><dd>Pet videos</dd></div></dl><p class="price">Asking price <strong>USD 430</strong></p></article>
+          <article class="card" data-platform="tiktok"><div class="card-top"><span class="platform">TikTok</span></div><h3>Quick Recipes</h3><p class="code">Username: @juxxx</p><dl><div><dt>Followers</dt><dd>19.7K</dd></div><div><dt>Main audience</dt><dd>Malaysia</dd></div><div><dt>Content focus</dt><dd>Recipe videos</dd></div></dl><p class="price">Asking price <strong>USD 500</strong></p></article>
+          <article class="card" data-platform="tiktok"><div class="card-top"><span class="platform">TikTok</span></div><h3>Lifestyle Clips</h3><p class="code">Username: @taru6xxx</p><dl><div><dt>Followers</dt><dd>12.1K</dd></div><div><dt>Main audience</dt><dd>Southeast Asia</dd></div><div><dt>Content focus</dt><dd>Daily life</dd></div></dl><p class="price">Asking price <strong>USD 390</strong></p></article>
+          <article class="card" data-platform="tiktok"><div class="card-top"><span class="platform">TikTok</span></div><h3>Gaming Moments</h3><p class="code">Username: @v9mxxx</p><dl><div><dt>Followers</dt><dd>35.8K</dd></div><div><dt>Main audience</dt><dd>Global</dd></div><div><dt>Content focus</dt><dd>Gaming clips</dd></div></dl><p class="price">Asking price <strong>USD 690</strong></p></article>
+          <article class="card" data-platform="tiktok"><div class="card-top"><span class="platform">TikTok</span></div><h3>Sports &amp; Movement</h3><p class="code">Username: @nexi2xxx</p><dl><div><dt>Followers</dt><dd>23.6K</dd></div><div><dt>Main audience</dt><dd>Global</dd></div><div><dt>Content focus</dt><dd>Sports videos</dd></div></dl><p class="price">Asking price <strong>USD 550</strong></p></article>
+          <article class="card" data-platform="tiktok"><div class="card-top"><span class="platform">TikTok</span></div><h3>Plants &amp; Gardens</h3><p class="code">Username: @olqxxx</p><dl><div><dt>Followers</dt><dd>10.2K</dd></div><div><dt>Main audience</dt><dd>Southeast Asia</dd></div><div><dt>Content focus</dt><dd>Plant care</dd></div></dl><p class="price">Asking price <strong>USD 350</strong></p></article>
+          <article class="card" data-platform="youtube"><div class="card-top"><span class="platform">YouTube</span></div><h3>Technology Tutorials</h3><p class="code">Username: @hira7xxx</p><dl><div><dt>Subscribers</dt><dd>6.3K</dd></div><div><dt>Main audience</dt><dd>Global</dd></div><div><dt>Content focus</dt><dd>How-to videos</dd></div></dl><p class="price">Asking price <strong>USD 620</strong></p></article>
+          <article class="card" data-platform="youtube"><div class="card-top"><span class="platform">YouTube</span></div><h3>Travel Guides</h3><p class="code">Username: @xemi4xxx</p><dl><div><dt>Subscribers</dt><dd>7.8K</dd></div><div><dt>Main audience</dt><dd>Southeast Asia</dd></div><div><dt>Content focus</dt><dd>Destination guides</dd></div></dl><p class="price">Asking price <strong>USD 530</strong></p></article>
+          <article class="card" data-platform="youtube"><div class="card-top"><span class="platform">YouTube</span></div><h3>Home Cooking</h3><p class="code">Username: @runo5xxx</p><dl><div><dt>Subscribers</dt><dd>5.9K</dd></div><div><dt>Main audience</dt><dd>Global</dd></div><div><dt>Content focus</dt><dd>Cooking videos</dd></div></dl><p class="price">Asking price <strong>USD 470</strong></p></article>
+        </div>
+      </section>
+      <section class="about" id="about" aria-labelledby="about-title">
+        <h2 id="about-title">About Us</h2>
+        <p>We provide social media services including account information review, account-related consultation, content planning, and day-to-day management. Any real account information would need to be verified, and all activity must follow the relevant platform rules.</p>
+      </section>
+    </main>
+    <footer>© 2025 LePoint Site · Website preview</footer>
+  </div>
+  <script>
+    const buttons = document.querySelectorAll('[data-filter]');
+    const cards = document.querySelectorAll('[data-platform]');
+    buttons.forEach(button => button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      cards.forEach(card => { card.hidden = filter !== 'all' && card.dataset.platform !== filter; });
+    }));
+  </script>
+</body>
+</html>
